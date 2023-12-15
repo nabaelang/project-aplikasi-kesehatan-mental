@@ -14,6 +14,8 @@ use App\Actions\Fortify\PasswordValidationRules;
 
 class UserController extends Controller
 {
+    use PasswordValidationRules;
+
     public function login(Request $request)
     {
         try {
@@ -73,11 +75,12 @@ class UserController extends Controller
             //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             //     'password' => $this->passwordRules()
             // ]);
+            // logger('Entering register method');
 
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
-                'nrp' => ['required', 'string', 'max:255', 'unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'gender' => ['required', 'string'],
                 'password' => $this->passwordRules()
             ]);
 
@@ -87,10 +90,10 @@ class UserController extends Controller
 
             User::create([
                 'name' => $request->name,
-                'nrp' => $request->nrp,
                 'email' => $request->email,
+                'gender' => $request->gender,
                 'password' => Hash::make($request->password),
-                'phoneNumber' => $request->phoneNumber,
+                'phone' => $request->phone,
             ]);
 
 
@@ -104,9 +107,10 @@ class UserController extends Controller
                 'user' => $user
             ], 'User Registered');
         } catch (Exception $error) {
+            logger($error->getMessage());
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
-                'error' => $error,
+                'error' => $error->getMessage(),
             ], 'Authentication Failed', 500);
         }
     }

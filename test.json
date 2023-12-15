@@ -1,3 +1,58 @@
+// GET /api/moods:
+
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "mood": "Happy",
+        "survey_date": "2023-12-09",
+        "created_at": "2023-12-09T10:00:00.000000Z",
+        "updated_at": "2023-12-09T10:00:00.000000Z",
+        "question": {
+            "id": 1,
+            "question": "How happy are you today?",
+            "survey_date": "2023-12-09",
+            "created_at": "2023-12-09T08:00:00.000000Z",
+            "updated_at": "2023-12-09T08:00:00.000000Z"
+        }
+    },
+    {
+        "id": 2,
+        "user_id": 1,
+        "mood": "Neutral",
+        "survey_date": "2023-12-09",
+        "created_at": "2023-12-09T11:00:00.000000Z",
+        "updated_at": "2023-12-09T11:00:00.000000Z",
+        "question": {
+            "id": 1,
+            "question": "How happy are you today?",
+            "survey_date": "2023-12-09",
+            "created_at": "2023-12-09T08:00:00.000000Z",
+            "updated_at": "2023-12-09T08:00:00.000000Z"
+        }
+    }
+]
+
+
+// POST /api/moods:
+//PARAMS
+// {
+//     "user_id": 1,
+//     "mood": "Sad",
+//     "survey_date": "2023-12-09"
+// }
+
+{
+    "id": 3,
+    "user_id": 1,
+    "mood": "Sad",
+    "survey_date": "2023-12-09",
+    "created_at": "2023-12-09T12:00:00.000000Z",
+    "updated_at": "2023-12-09T12:00:00.000000Z"
+}
+
+
+
 // POST /api/moods/track
 // PARAMS {mood:"happy"}
 
@@ -11,6 +66,8 @@
 }
 
 // GET /api/users/{userId}/moods/{date}:
+// curl -X GET http://example.com/api/questions/2023-12-09
+
 
 [
     {
@@ -22,6 +79,31 @@
         "updated_at": "2023-12-09T14:00:00.000000Z"
     }
 ]
+
+// POST /api/questions:
+// {
+//     "question": "How stressed are you today?",
+//     "survey_date": "2023-12-09",
+//     "answer_options": ["Not at all", "A little", "Moderately", "Very", "Extremely"]
+// }
+
+{
+    "id": 3,
+    "question": "How stressed are you today?",
+    "survey_date": "2023-12-09",
+    "answer_options": ["Not at all", "A little", "Moderately", "Very", "Extremely"],
+    "created_at": "2023-12-09T13:00:00.000000Z",
+    "updated_at": "2023-12-09T13:00:00.000000Z"
+}
+
+// GET /api/users/{userId}/moods:
+// [
+//     {
+//         "id": 1,
+//         "user_id": 1,
+//         "mood": "Happy",
+//         "survey_date": "
+
 
 
 // GET /api/users/{userId}/mood-history:

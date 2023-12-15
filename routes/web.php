@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('admin.index');
+})->name('admin.index');
+
 Route::prefix('admin')->group(function () {
     Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
     Route::get('questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');

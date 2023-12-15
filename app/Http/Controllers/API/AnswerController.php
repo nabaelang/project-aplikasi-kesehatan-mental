@@ -24,4 +24,24 @@ class AnswerController extends Controller
 
         return response()->json(['message' => 'Answer submitted successfully']);
     }
+
+    public function storeMultiple(Request $request)
+    {
+        $request->validate([
+            'answers' => 'required|array',
+            'answers.*.question_id' => 'required|exists:questions,id',
+            'answers.*.selected_option' => 'required',
+        ]);
+
+        $user = $request->user();
+
+        foreach ($request->input('answers') as $answerData) {
+            Answer::updateOrCreate(
+                ['user_id' => $user->id, 'question_id' => $answerData['question_id']],
+                ['selected_option' => $answerData['selected_option']]
+            );
+        }
+
+        return response()->json(['message' => 'Answers submitted successfully']);
+    }
 }

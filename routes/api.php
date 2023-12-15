@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MoodController;
+use App\Http\Controllers\API\AnswerController;
+use App\Http\Controllers\API\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::post('login', [UserController::class, 'login']);
+Route::post('register', [UserController::class, 'register']);
 Route::apiResource('moods', MoodController::class);
 Route::post('moods/track', [MoodController::class, 'trackMood']);
 Route::get('users/{userId}/moods', [MoodController::class, 'getUserMoodHistory']);
 Route::get('users/{userId}/moods/{date}', [MoodController::class, 'getUserDailyMood']);
 Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
 Route::post('questions', [MoodController::class, 'storeQuestion']);
+Route::post('/answers', [AnswerController::class, 'store']);
+Route::post('/answers/multiple', [AnswerController::class, 'storeMultiple']);

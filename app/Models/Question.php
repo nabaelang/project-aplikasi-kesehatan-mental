@@ -17,4 +17,9 @@ class Question extends Model
     {
         return $this->hasMany(Mood::class, 'survey_date', 'survey_date');
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

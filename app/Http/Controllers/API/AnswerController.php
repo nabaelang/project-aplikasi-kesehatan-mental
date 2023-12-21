@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Answer;
+use App\Models\Question;
+use App\Models\MoodConfiguration;
 
 class AnswerController extends Controller
 {
@@ -25,6 +27,14 @@ class AnswerController extends Controller
         return response()->json(['message' => 'Answer submitted successfully']);
     }
 
+    public function getByQuestion($questionId)
+    {
+        $question = Question::findOrFail($questionId);
+        $answers = $question->answers;
+
+        return response()->json($answers);
+    }
+
     public function storeMultiple(Request $request)
     {
         $request->validate([
@@ -43,5 +53,10 @@ class AnswerController extends Controller
         }
 
         return response()->json(['message' => 'Answers submitted successfully']);
+    }
+
+    private function detectMood($user, $questionId, $selectedOption)
+    {
+        return MoodConfiguration::getMood($questionId, $selectedOption);
     }
 }

@@ -33,3 +33,4 @@ Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
 Route::post('questions', [MoodController::class, 'storeQuestion']);
 Route::post('/answers', [AnswerController::class, 'store']);
 Route::post('/answers/multiple', [AnswerController::class, 'storeMultiple']);
+Route::get('questions/{questionId}/answers', [AnswerController::class, 'getByQuestion']);

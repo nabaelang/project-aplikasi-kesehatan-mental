@@ -20,4 +20,9 @@ class Answer extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    public function moodConfiguration()
+    {
+        return $this->belongsTo(MoodConfiguration::class);
+    }
 }

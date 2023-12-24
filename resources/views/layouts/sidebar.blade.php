@@ -2,14 +2,14 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="/admin/dashboard">
+            <a class="nav-link " href="/>
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href="/admin/dashboard">
+            <a class="nav-link " href="/>
                 <i class="bi bi-person"></i>
                 <span>Users</span>
             </a>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/blogcategory/add">
+                    <a href="/admin/mood-configurations/create">
                         <i class="bi bi-circle-fill"></i><span>Add Mood Config</span>
                     </a>
                 </li>

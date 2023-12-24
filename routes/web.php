@@ -24,6 +24,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/admin/users-profile', function () {
+    return view('admin.users_profile');
+});
+
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin.index');
@@ -42,6 +46,7 @@ Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'i
 // Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index']);
 
 Route::get('/admin/load-answer-options/{questionId}', [MoodConfigurationController::class, 'loadAnswers']);
+
 
 
 // Route::middleware(['auth:sanctum', 'verified', 'can:administer'])->group(function () {

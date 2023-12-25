@@ -9,7 +9,7 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href="/">
+            <a class="nav-link " href="/admin/users">
                 <i class="bi bi-person"></i>
                 <span>Users</span>
             </a>
@@ -53,22 +53,6 @@
                 </li>
             </ul>
         </li><!-- End Components Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-book-half"></i></i><span>Blog</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="/admin/blog">
-                        <i class="bi bi-circle-fill"></i><span>Daftar Blog</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/blog/add">
-                        <i class="bi bi-circle-fill"></i><span>Tambah Blog</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
+        <!-- End Components Nav -->
     </ul>
 </aside><!-- End Sidebar-->

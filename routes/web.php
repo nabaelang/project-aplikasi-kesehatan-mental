@@ -28,6 +28,14 @@ Route::get('/admin/users-profile', function () {
     return view('admin.users_profile');
 });
 
+Route::get('/admin/users', function () {
+    return view('admin.users.index');
+});
+
+Route::get('/admin/users/detail', function () {
+    return view('admin.users.detail');
+});
+
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin.index');

@@ -51,6 +51,7 @@ Route::prefix('admin')->group(function () {
 });
 Route::post('/admin/mood-configurations/store', [MoodConfigurationController::class, 'store']);
 Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood_configurations.index');
+
 // Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index']);
 
 Route::get('/admin/load-answer-options/{questionId}', [MoodConfigurationController::class, 'loadAnswers']);

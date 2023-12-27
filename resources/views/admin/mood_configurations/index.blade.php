@@ -7,7 +7,7 @@
     <a href="/admin/mood-configurations/create" class="btn btn-primary">Add Configuration</a>
 
     @if (session('success'))
-        <div class="alert alert-success mt-3">
+        <div class="mt-3 alert alert-success">
             {{ session('success') }}
         </div>
     @endif
@@ -28,13 +28,18 @@
                     <td>{{ $config->selected_option }}</td>
                     <td>{{ $config->mood }}</td>
                     <td>
-                        <a href="/admin/mood-configurations/edit{{ $config }}" class="btn btn-warning">Edit</a>
-                        <form action="/admin/mood-configurations/destroy{{ $config }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        <div class="d-flex align-items-center">
+                            <a href="/admin/mood-configurations/edit{{ $config }}" class="btn btn-warning me-2"><i
+                                    class="text-white bi bi-pencil-fill"></i></a>
+
+                            <form action="/admin/mood-configurations/destroy{{ $config }}" method="POST"
+                                class="">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i
+                                        class="text-white bi bi-trash3-fill"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

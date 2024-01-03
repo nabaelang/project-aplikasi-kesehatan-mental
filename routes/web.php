@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\MoodConfigurationController;
-
+use App\Http\Controllers\Admin\MoodController;
+use App\Http\Controllers\Admin\MoodResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,15 @@ Route::prefix('admin')->group(function () {
 });
 Route::post('/admin/mood-configurations/store', [MoodConfigurationController::class, 'store']);
 Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood_configurations.index');
+Route::resource('admin/mood-results', MoodResultController::class);
+Route::post('admin/mood-results/{id}/determine-mood', [MoodResultController::class, 'determineMood'])
+    ->name('admin.mood-results.determine-mood');
+
+Route::get('/admin/moods/create/{user_id}', [MoodController::class, 'create'])->name('admin.moods.create');
+Route::post('/admin/moods/store', [MoodController::class, 'store'])->name('admin.moods.store');
+Route::resource('admin/moods', MoodController::class);
+Route::put('admin/moods/{id}/update', [MoodController::class, 'update'])->name('admin.moods.update');
+
 
 // Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index']);
 

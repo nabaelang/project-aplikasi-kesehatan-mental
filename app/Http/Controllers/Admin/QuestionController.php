@@ -29,14 +29,17 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'question' => 'required',
-            'survey_date' => 'required|date',
-            'answer_options' => 'nullable|string',
+            'is_default' => 'required',
+            'survey_date' => 'nullable|date',
+            'answer_options' => 'required',
         ]);
 
-        $question = Question::create([
+        Question::create([
             'question' => $request->input('question'),
+            'is_default' => $request->input('is_default'),
             'survey_date' => $request->input('survey_date'),
             'answer_options' => $this->parseAnswerOptions($request->input('answer_options')),
         ]);
@@ -59,11 +62,17 @@ class QuestionController extends Controller
     {
         $request->validate([
             'question' => 'required',
-            'survey_date' => 'required|date',
+            'answer_options' => 'required',
+            'is_default' => 'required'
             // tambahkan validasi jika ada pilihan jawaban
         ]);
 
-        $question->update($request->all());
+        $question->update([
+            'question' => $request->input('question'),
+            'survey_date' => $request->input('survey_date'),
+            'answer_options' => $this->parseAnswerOptions($request->input('answer_options')),
+            'is_default' => $request->input('is_default'),
+        ]);
 
         return redirect()->route('admin.questions.index')->with('success', 'Question updated successfully');
     }

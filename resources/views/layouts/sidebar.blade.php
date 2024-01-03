@@ -16,6 +16,20 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link " href="/admin/moods">
+                <i class="bi bi-person"></i>
+                <span>Moods</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/mood-results">
+                <i class="bi bi-person"></i>
+                <span>Mood Result</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-pc-display-horizontal"></i><span>Questions</span><i
                     class="bi bi-chevron-down ms-auto"></i>
@@ -52,7 +66,7 @@
                     </a>
                 </li>
             </ul>
-        </li><!-- End Components Nav -->
+        </li>
         <!-- End Components Nav -->
     </ul>
 </aside><!-- End Sidebar-->

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('mood_results', function (Blueprint $table) {
             $table->id();
-            $table->text('question')->nullable();
-            $table->date('survey_date')->nullable();
-            $table->enum('is_default', ['yes', 'no'])->nullable();
-            $table->json('answer_options')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->json('user_mood')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('mood_results');
     }
 };

@@ -27,6 +27,11 @@ class MoodController extends Controller
     public function getQuestionsByDate($date)
     {
         $questions = Question::where('survey_date', $date)->get();
+        $questionsAll = Question::where('is_default', 'yes')->get();
+
+        if ($questions->isEmpty()) {
+            return response()->json($questionsAll);
+        }
         return response()->json($questions);
     }
 

@@ -27,7 +27,8 @@ class UserController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
-                'password' => 'required'
+                'password' => 'required',
+                'fcm_token' => 'nullable'
             ]);
 
             if ($validator->fails()) {
@@ -38,6 +39,9 @@ class UserController extends Controller
             $credentials = request(['email', 'password']);
             // var_dump($credentials);
             if (!Auth::attempt($credentials)) {
+                if ($request->filled('fcm_token')) {
+                    Auth::user()->update(['fcm_token' => $request->fcm_token]);
+                }
                 return ResponseFormatter::error([
                     'message' => 'Unauthorized'
                 ], 'Authentication Failed', 401);

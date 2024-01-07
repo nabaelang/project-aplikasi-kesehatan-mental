@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\MoodConfigurationController;
 use App\Http\Controllers\Admin\MoodController;
 use App\Http\Controllers\Admin\MoodResultController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ Route::get('/admin/users-profile', function () {
     return view('admin.users_profile');
 });
 
-Route::get('/admin/users', function () {
-    return view('admin.users.index');
-});
+Route::resource('/admin/users', UserController::class);
 
 Route::get('/admin/users/detail', function () {
     return view('admin.users.detail');

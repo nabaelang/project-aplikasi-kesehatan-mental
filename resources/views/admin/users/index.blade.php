@@ -1,31 +1,43 @@
-@extends('layouts.app') // Sesuaikan dengan layout yang digunakan di aplikasi Anda
+<!-- resources/views/admin/questions/index.blade.php -->
+@extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>User List</h1>
-
-        <table class="table">
-            <thead>
+    <h1>User List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>No Telp</th>
+                {{-- <th>Actions</th> --}}
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($users as $user)
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->phone }}</td>
+                    {{-- <td>
+                        <div class="d-flex align-items-center">
+                            <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-warning me-2"><i
+                                    class="text-white bi bi-pencil-fill"></i></a>
+                            <form action="{{ route('admin.questions.destroy', $question->id) }}" method="POST"
+                                style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this question?')"><i
+                                        class="text-white bi bi-trash3-fill"></i></button>
+                            </form>
+                        </div>
+                    </td> --}}
                 </tr>
-            </thead>
-            <tbody>
+            @empty
                 <tr>
-                    <td>1</td>
-                    <td>reonaldi</td>
-                    <td>reo@gmail.com</td>
-                    <td>
-                        <a href="" class="btn btn-primary">Edit</a>
-                        <a href="users/detail" class="btn btn-primary">Detail</a>
-                        <a href="" class="btn btn-danger"
-                            onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
-                    </td>
+                    <td colspan="4">No questions available</td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+            @endforelse
+        </tbody>
+    </table>
 @endsection

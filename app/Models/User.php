@@ -24,6 +24,7 @@ class User extends Authenticatable
         'gender',
         'roles',
         'password',
+        'fcm_token',
     ];
 
     /**
@@ -34,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'fcm_token',
     ];
 
     /**
@@ -49,5 +51,15 @@ class User extends Authenticatable
     public function moods()
     {
         return $this->hasMany(Mood::class);
+    }
+
+    /**
+     * Specifies the user's FCM token
+     *
+     * @return string|array
+     */
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
     }
 }

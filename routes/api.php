@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user', [UserController::class, 'updateProfile']);
     Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('logout', [UserController::class, 'logout']);
+    Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
 });
 
 Route::post('login', [UserController::class, 'login']);
@@ -38,7 +39,7 @@ Route::apiResource('moods', MoodController::class);
 Route::post('moods/track', [MoodController::class, 'trackMood']);
 Route::get('users/{userId}/moods', [MoodController::class, 'getUserMoodHistory']);
 Route::get('users/{userId}/moods/{date}', [MoodController::class, 'getUserDailyMood']);
-Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
+// Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
 Route::post('questions', [MoodController::class, 'storeQuestion']);
 Route::post('/answers', [AnswerController::class, 'store']);
 Route::post('/answers/multiple', [AnswerController::class, 'storeMultiple']);

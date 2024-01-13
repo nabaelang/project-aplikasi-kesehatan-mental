@@ -69,30 +69,30 @@
                                         <p class="text-center small">Enter your username & password to login</p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" novalidate>
-
-                                        <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" name="username" class="form-control"
-                                                    id="yourUsername" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
-                                            </div>
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+                                        <div class="mb-3 form">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" id="email"
+                                                class="form-control @error('email') is-invalid @enderror" required>
+                                            @error('email')
+                                                <div id="emailHelp" class="form-text">{{ $message }}</div>
+                                            @enderror
                                         </div>
-
-                                        <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control"
-                                                id="yourPassword" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
+                                        <div class="mb-3 form">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" name="password" id="password"
+                                                class="form-control @error('password') is-invalid @enderror" required>
+                                            @error('password')
+                                                <div id="passwordHelp" class="form-text">{{ $message }}</div>
+                                            @enderror
                                         </div>
-
-
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        <div class="mb-3 mt-5 ">
+                                            <button class="btn btn-primary w-100"
+                                                type="sub
+                                            "
+                                                style="border-radius: 20px;">Login</button>
                                         </div>
-
                                     </form>
 
                                 </div>

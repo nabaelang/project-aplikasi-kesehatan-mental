@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->fcm_token;
     }
+
+    public function hasRole($role)
+    {
+        return $this->roles === $role;
+    }
 }

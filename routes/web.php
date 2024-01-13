@@ -18,37 +18,68 @@ use App\Http\Controllers\Admin\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
+// Route::get('/', function () {
+//     return view('admin.index');
+// });
+
+// Route::get('/login', function () {
+//     return view('login');
+// });
+
+Route::view('/login', 'login')->name('login');
+Route::post('/login', [UserController::class, 'doLogin']);
+Route::get('/logout', [UserController::class, 'logout']);
+
+// Route::get('/admin/users-profile', function () {
+//     return view('admin.users_profile');
+// });
+
+// Route::resource('/admin/users', UserController::class);
+
+// Route::get('/admin/users/detail', function () {
+//     return view('admin.users.detail');
+// });
+
+// Route::get('/admin', function () {
+//     return view('admin.index');
+// })->name('admin.index');
+
+// Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {
+//     Route::get('/', function () {
+//         return view('admin.index');
+//     });
+//     Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
+//     Route::get('questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
+//     Route::post('questions', [QuestionController::class, 'store'])->name('admin.questions.store');
+//     Route::get('questions/{question}/edit', [QuestionController::class, 'edit'])->name('admin.questions.edit');
+//     Route::put('questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
+//     Route::delete('questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
+//     Route::resource('mood-configurations', MoodConfigurationController::class);
+// });
+
+Route::middleware(['auth:sanctum', 'ADMIN'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', function () {
+            return view('admin.index');
+        })->name('admin.dashboard');  // Name the route if needed
+
+        Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
+        Route::get('questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
+        Route::post('questions', [QuestionController::class, 'store'])->name('admin.questions.store');
+        Route::get('questions/{question}/edit', [QuestionController::class, 'edit'])->name('admin.questions.edit');
+        Route::put('questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
+        Route::delete('questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
+
+        Route::resource('mood-configurations', MoodConfigurationController::class);
+    });
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('admin.index');
 });
 
-Route::get('/admin/users-profile', function () {
-    return view('admin.users_profile');
-});
-
-Route::resource('/admin/users', UserController::class);
-
-Route::get('/admin/users/detail', function () {
-    return view('admin.users.detail');
-});
-
-Route::get('/admin', function () {
-    return view('admin.index');
-})->name('admin.index');
-
-Route::prefix('admin')->group(function () {
-    Route::get('questions', [QuestionController::class, 'index'])->name('admin.questions.index');
-    Route::get('questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
-    Route::post('questions', [QuestionController::class, 'store'])->name('admin.questions.store');
-    Route::get('questions/{question}/edit', [QuestionController::class, 'edit'])->name('admin.questions.edit');
-    Route::put('questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
-    Route::delete('questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
-    Route::resource('mood-configurations', MoodConfigurationController::class);
-});
 Route::post('/admin/mood-configurations/store', [MoodConfigurationController::class, 'store']);
 Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood_configurations.index');
 Route::resource('admin/mood-results', MoodResultController::class);

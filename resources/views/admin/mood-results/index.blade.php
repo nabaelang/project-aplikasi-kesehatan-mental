@@ -5,7 +5,7 @@
 @section('content')
     <h2>Mood Results</h2>
 
-    <table>
+    <table class="table mt-3"> <!-- Tambahkan kelas 'table' di sini -->
         <thead>
             <tr>
                 <th>User</th>
@@ -24,7 +24,7 @@
                             @csrf
                             <button type="submit">Determine Mood</button>
                         </form> --}}
-                        <a href="/admin/moods/create/{{ $moodResult->user->id }}">determine mood</a>
+                        <a href="/admin/moods/create/{{ $moodResult->user->id }}">Determine Mood</a>
                     </td>
                 </tr>
             @endforeach

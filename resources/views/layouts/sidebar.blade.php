@@ -67,6 +67,13 @@
                 </li>
             </ul>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/avatar-moods">
+                <i class="bi bi-person"></i>
+                <span>Avatar Moods</span>
+            </a>
+        </li>
         <!-- End Components Nav -->
     </ul>
 </aside><!-- End Sidebar-->

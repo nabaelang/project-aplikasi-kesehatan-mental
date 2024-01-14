@@ -38,7 +38,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::apiResource('moods', MoodController::class);
 Route::post('moods/track', [MoodController::class, 'trackMood']);
 Route::get('users/{userId}/moods', [MoodController::class, 'getUserMoodHistory']);
-Route::get('users/{userId}/moods/{date}', [MoodController::class, 'getUserDailyMood']);
+Route::get('users/{userId}/moods/{date}', [MoodController::class, 'getUserDailyMood']); // ini blm dicoba
 // Route::get('questions/{date}', [MoodController::class, 'getQuestionsByDate']);
 Route::post('questions', [MoodController::class, 'storeQuestion']);
 Route::post('/answers', [AnswerController::class, 'store']);

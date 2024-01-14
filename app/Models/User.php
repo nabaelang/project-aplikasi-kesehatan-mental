@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Mood::class);
     }
 
+    public function avatarMoods()
+    {
+        return $this->hasMany(AvatarMood::class);
+    }
+
     /**
      * Specifies the user's FCM token
      *

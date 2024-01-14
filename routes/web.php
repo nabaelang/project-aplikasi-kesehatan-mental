@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AvatarMoodController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\MoodConfigurationController;
@@ -36,6 +37,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/admin/questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
     Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
     Route::resource('/admin/mood-configurations', MoodConfigurationController::class);
+    Route::resource('/admin/avatar-moods', AvatarMoodController::class);
+    Route::delete('/admin/avatar-moods/{avatar-moods}', [AvatarMoodController::class, 'destroy'])->name('admin.avatar-moods.destroy');
 });
 
 

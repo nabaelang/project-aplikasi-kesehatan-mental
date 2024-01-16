@@ -9,7 +9,7 @@ class Mood extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'mood', 'survey_date'];
+    protected $fillable = ['user_id', 'mood', 'survey_date', 'avatar_moods'];
 
     public function user()
     {

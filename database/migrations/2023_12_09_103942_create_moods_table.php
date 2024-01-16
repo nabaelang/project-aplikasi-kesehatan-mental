@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('mood')->nullable();
+            $table->string('avatar_moods')->nullable();
             $table->date('survey_date');
             $table->timestamps();
 

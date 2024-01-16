@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AvatarMood;
 use App\Models\Mood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,11 @@ class MoodController extends Controller
     public function create($userId)
     {
         // Tampilkan formulir pembuatan mood untuk user tertentu
-        return view('admin.moods.create', ['userIdFromUrl' => $userId]);
+        // return view('admin.moods.create', ['userIdFromUrl' => $userId]);
+        $avatarMoods = AvatarMood::all();
+
+        // Tampilkan formulir pembuatan mood untuk user tertentu
+        return view('admin.moods.create', ['userIdFromUrl' => $userId, 'avatarMoods' => $avatarMoods]);
     }
 
     public function store(Request $request)
@@ -49,6 +54,7 @@ class MoodController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'mood' => 'required',
+            'avatar_moods' => 'required',
             'survey_date' => 'required',
         ]);
 

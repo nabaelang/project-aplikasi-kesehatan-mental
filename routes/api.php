@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MoodController;
 use App\Http\Controllers\API\AnswerController;
+use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\MoodResultController;
 use App\Http\Controllers\API\UserController;
 use App\Mail\NotifMoodResult;
@@ -45,6 +46,7 @@ Route::post('/answers', [AnswerController::class, 'store']);
 Route::post('/answers/multiple', [AnswerController::class, 'storeMultiple']);
 Route::get('questions/{questionId}/answers', [AnswerController::class, 'getByQuestion']);
 Route::post('/mood-result', [MoodResultController::class, 'store']);
+Route::get('/article', [ArticleController::class, 'index']);
 
 // Route::get('notif-mood-result', function () {
 //     $email = new NotifMoodResult();

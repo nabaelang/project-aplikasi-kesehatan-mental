@@ -7,6 +7,9 @@ use App\Models\AvatarMood;
 use App\Models\Mood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\NotifMoodResult;
+use App\Mail\NotifUserMoods;
+use Illuminate\Support\Facades\Mail;
 
 class MoodController extends Controller
 {
@@ -58,7 +61,9 @@ class MoodController extends Controller
             'survey_date' => 'required',
         ]);
 
-        Mood::create($request->all());
+        $moods = Mood::create($request->all());
+        $email = new NotifUserMoods($moods);
+        Mail::to('reonaldi1105@gmail.com')->send($email);
 
         return redirect('/admin/moods')->with('success', 'Mood berhasil dibuat!');
     }

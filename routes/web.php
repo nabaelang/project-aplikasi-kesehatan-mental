@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AvatarMoodController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\QuestionController;
@@ -36,6 +37,14 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/questions/{question}/edit', [QuestionController::class, 'edit'])->name('admin.questions.edit');
     Route::put('/admin/questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
     Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
+
+    Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article.index');
+    Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
+    Route::post('/admin/article', [ArticleController::class, 'store'])->name('admin.article.store');
+    Route::get('/admin/article/{article}/edit', [ArticleController::class, 'edit'])->name('admin.article.edit');
+    Route::put('/admin/article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
+    Route::delete('/admin/article/{article}', [ArticleController::class, 'destroy'])->name('admin.article.destroy');
+
     Route::resource('/admin/mood-configurations', MoodConfigurationController::class);
     Route::resource('/admin/avatar-moods', AvatarMoodController::class);
     Route::delete('/admin/avatar-moods/{avatar-moods}', [AvatarMoodController::class, 'destroy'])->name('admin.avatar-moods.destroy');

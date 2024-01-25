@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Mail\NotifMoodResult;
 use App\Models\MoodResult;
@@ -30,7 +31,8 @@ class MoodResultController extends Controller
         $email = new NotifMoodResult($moodResult);
         Mail::to('reonaldi1105@gmail.com')->send($email);
 
-        return response()->json(['message' => 'data successfully', 'data' => $moodResult], 200);
+        // return response()->json(['message' => 'data successfully', 'data' => $moodResult], 200);
+        return ResponseFormatter::success($moodResult, "Success");
     }
 
     private function parseUserMood($options)

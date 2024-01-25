@@ -35,6 +35,6 @@
             <input type="text" class="form-control" id="link" name="link" required>
         </div>
 
-        <button type col-sm-2="submit" class="btn btn-primary">Add Question</button>
+        <button type col-sm-2="submit" class="btn btn-primary">Add Game</button>
     </form>
 @endsection

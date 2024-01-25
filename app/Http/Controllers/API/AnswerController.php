@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Answer;
@@ -38,10 +39,12 @@ class AnswerController extends Controller
 
             $mood = $moodConfiguration->mood;
 
-            return response()->json(['message' => 'Answer submitted successfully', 'mood' => $mood], 200);
+            // return response()->json(['message' => 'Answer submitted successfully', 'mood' => $mood], 200);
+            return ResponseFormatter::success($mood, "Jawaban berhasil dikirim");
         } else {
 
-            return response()->json(['error' => 'Mood configuration not found'], 404);
+            // return response()->json(['error' => 'Mood configuration not found'], 404);
+            return ResponseFormatter::error(null, "Pertanyaan belum dikonfigurasi mood nya oleh admin", 404);
         }
     }
 
@@ -70,7 +73,8 @@ class AnswerController extends Controller
         $question = Question::findOrFail($questionId);
         $answers = $question->answer_options;
 
-        return response()->json($answers);
+        // return response()->json($answers);
+        return ResponseFormatter::success($answers, "Berhasil mendapatkan data pertanyaan");
     }
 
     private function detectMood($user, $questionId, $selectedOption)

@@ -82,6 +82,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/game">
+                <i class="bi bi-person"></i>
+                <span>Game</span>
+            </a>
+        </li>
+
         {{-- <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-pc-display-horizontal"></i><span>Article</span><i

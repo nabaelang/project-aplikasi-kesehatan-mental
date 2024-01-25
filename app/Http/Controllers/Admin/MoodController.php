@@ -62,8 +62,13 @@ class MoodController extends Controller
         ]);
 
         $moods = Mood::create($request->all());
+
+        // Mengambil alamat email user terkait
+        $userEmail = $moods->user->email;
+
         $email = new NotifUserMoods($moods);
-        Mail::to('reonaldi1105@gmail.com')->send($email);
+        // Mail::to('reonaldi1105@gmail.com')->send($email);
+        Mail::to($userEmail)->send($email);
 
         return redirect('/admin/moods')->with('success', 'Mood berhasil dibuat!');
     }

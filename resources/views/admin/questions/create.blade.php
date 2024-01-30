@@ -37,6 +37,13 @@
             </select>
         </div>
         <div class="mb-3">
+            <label for="is_emoticon" class="form-label">Is Emoticon</label>
+            <select class="form-select" id="is_emoticon" name="is_emoticon" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="survey_date" class="form-label">Survey Date:</label>
             <input type="date" class="form-control" id="survey_date" name="survey_date">
         </div>
@@ -44,6 +51,7 @@
             <label for="answer_options" class="form-label">Answer</label>
             <input type="text" class="form-control" id="answer_options" name="answer_options" required>
         </div>
+
         <!-- Tambahkan form input untuk answer_options jika ada -->
         <button type col-sm-2="submit" class="btn btn-primary">Add Question</button>
     </form>

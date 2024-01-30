@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->text('question')->nullable();
             $table->date('survey_date')->nullable();
+            $table->string('image')->nullable();
             $table->enum('is_default', ['yes', 'no'])->nullable();
+            $table->enum('is_emoticon', ['yes', 'no'])->nullable();
             $table->json('answer_options')->nullable();
             $table->timestamps();
         });

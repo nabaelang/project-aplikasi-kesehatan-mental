@@ -33,13 +33,20 @@ class QuestionController extends Controller
         $request->validate([
             'question' => 'required',
             'is_default' => 'required',
+            'is_emoticon' => 'required',
             'survey_date' => 'nullable|date',
             'answer_options' => 'required',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // $imagePath = $request->file('image')->store('questions', 'public');
+
 
         Question::create([
             'question' => $request->input('question'),
             'is_default' => $request->input('is_default'),
+            'is_emoticon' => $request->input('is_emoticon'),
+            // 'image' => $imagePath,
             'survey_date' => $request->input('survey_date'),
             'answer_options' => $this->parseAnswerOptions($request->input('answer_options')),
         ]);
@@ -60,18 +67,20 @@ class QuestionController extends Controller
 
     public function update(Request $request, Question $question)
     {
-        $request->validate([
-            'question' => 'required',
-            'answer_options' => 'required',
-            'is_default' => 'required'
-            // tambahkan validasi jika ada pilihan jawaban
-        ]);
+        // $request->validate([
+        //     'question' => 'required',
+        //     'answer_options' => 'required',
+        //     'survey_date' => 'nullable|date',
+        //     'is_default' => 'required'
+        //     // tambahkan validasi jika ada pilihan jawaban
+        // ]);
 
         $question->update([
             'question' => $request->input('question'),
             'survey_date' => $request->input('survey_date'),
             'answer_options' => $this->parseAnswerOptions($request->input('answer_options')),
             'is_default' => $request->input('is_default'),
+            'is_emoticon' => $request->input('is_emoticon'),
         ]);
 
         return redirect()->route('admin.questions.index')->with('success', 'Question updated successfully');

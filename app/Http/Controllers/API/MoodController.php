@@ -55,7 +55,8 @@ class MoodController extends Controller
         $questionsAll = Question::where('is_default', 'yes')->get();
 
         if ($questions->isEmpty()) {
-            return response()->json($questionsAll);
+            // return response()->json($questionsAll);
+            return ResponseFormatter::success($questionsAll, "Success");
         }
         // return response()->json($questions);
         return ResponseFormatter::success($questions, "Success");

@@ -1,0 +1,4 @@
+
+cd C:\Users\ISYSNotebook001\Downloads\ngrok-v3-stable-windows-amd64
+
+ngrok http http://localhost:8000

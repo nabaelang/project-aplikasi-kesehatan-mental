@@ -25,6 +25,10 @@
             </select>
         </div>
         <div class="mb-3">
+            <label for="percentage" class="form-label">Percentage</label>
+            <input type="number" class="form-control" id="percentage" name="percentage" required>
+        </div>
+        <div class="mb-3">
             <label for="mood" class="form-label">Mood</label>
             <input type="text" class="form-control" id="mood" name="mood" required>
         </div>

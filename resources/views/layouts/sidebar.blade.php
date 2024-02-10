@@ -76,18 +76,25 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link " href="/admin/mood-range">
+                <i class="bi bi-person"></i>
+                <span>Mood Range Percentage</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link " href="/admin/article">
                 <i class="bi bi-person"></i>
                 <span>Article</span>
             </a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link " href="/admin/game">
                 <i class="bi bi-person"></i>
                 <span>Game</span>
             </a>
-        </li>
+        </li> --}}
 
         {{-- <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">

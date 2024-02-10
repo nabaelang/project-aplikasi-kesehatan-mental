@@ -37,10 +37,11 @@ class AnswerController extends Controller
             ]);
             $answer->save();
 
-            $mood = $moodConfiguration->mood;
+            // $mood = $moodConfiguration->mood;
+            // $mood = $moodConfiguration;
 
             // return response()->json(['message' => 'Answer submitted successfully', 'mood' => $mood], 200);
-            return ResponseFormatter::success($mood, "Jawaban berhasil dikirim");
+            return ResponseFormatter::success($moodConfiguration, "Jawaban berhasil dikirim");
         } else {
 
             // return response()->json(['error' => 'Mood configuration not found'], 404);

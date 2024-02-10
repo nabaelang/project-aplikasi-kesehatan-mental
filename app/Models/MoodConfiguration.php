@@ -9,7 +9,7 @@ class MoodConfiguration extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['question_id', 'selected_option', 'mood'];
+    protected $fillable = ['question_id', 'selected_option', 'mood', 'percentage'];
 
     public function question()
     {

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\MoodConfigurationController;
 use App\Http\Controllers\Admin\MoodController;
+use App\Http\Controllers\Admin\MoodRangeController;
 use App\Http\Controllers\Admin\MoodResultController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -45,6 +46,13 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/article/{article}/edit', [ArticleController::class, 'edit'])->name('admin.article.edit');
     Route::put('/admin/article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
     Route::delete('/admin/article/{article}', [ArticleController::class, 'destroy'])->name('admin.article.destroy');
+
+    Route::get('/admin/mood-range', [MoodRangeController::class, 'index'])->name('admin.mood_range.index');
+    Route::get('/admin/mood-range/create', [MoodRangeController::class, 'create'])->name('admin.mood_range.create');
+    Route::post('/admin/mood-range', [MoodRangeController::class, 'store'])->name('admin.mood_range.store');
+    Route::get('/admin/mood-range/{moodRange}/edit', [MoodRangeController::class, 'edit'])->name('admin.mood_range.edit');
+    Route::put('/admin/mood-range/{moodRange}', [MoodRangeController::class, 'update'])->name('admin.mood_range.update');
+    Route::delete('/admin/mood-range/{moodRange}', [MoodRangeController::class, 'destroy'])->name('admin.mood_range.destroy');
 
     Route::get('/admin/game', [GameController::class, 'index'])->name('admin.game.index');
     Route::get('/admin/game/create', [GameController::class, 'create'])->name('admin.game.create');

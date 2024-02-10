@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('selected_option');
             $table->string('mood');
             $table->timestamps();
+            $table->decimal('percentage', 5, 2)->nullable();
 
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
         });

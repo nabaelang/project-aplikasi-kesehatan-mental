@@ -30,6 +30,7 @@ class MoodConfigurationController extends Controller
             'question_id' => 'required|exists:questions,id',
             'selected_option' => 'required',
             'mood' => 'required',
+            'percentage' => 'required|numeric',
         ]);
 
         MoodConfiguration::create($request->all());

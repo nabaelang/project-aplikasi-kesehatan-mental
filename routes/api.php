@@ -53,9 +53,9 @@ Route::post('/mood-result', [MoodResultController::class, 'store']);
 Route::get('/article', [ArticleController::class, 'index']);
 Route::get('/game', [GameController::class, 'index']);
 
-Route::post('password/email',  ForgotPasswordController::class);
-Route::post('password/code/check', CodeCheckController::class);
-Route::post('password/reset', ResetPasswordController::class);
+Route::post('password/email',  [ForgotPasswordController::class, 'index']);
+Route::post('password/code/check', [CodeCheckController::class]);
+Route::post('password/reset', [ResetPasswordController::class, 'index']);
 
 // Route::get('notif-mood-result', function () {
 //     $email = new NotifMoodResult();

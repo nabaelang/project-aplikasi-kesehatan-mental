@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MoodController;
 use App\Http\Controllers\API\AnswerController;
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\CodeCheckController;
+use App\Http\Controllers\API\ForgotPasswordController;
 use App\Http\Controllers\API\GameController;
 use App\Http\Controllers\API\MoodResultController;
+use App\Http\Controllers\API\ResetPasswordController;
 use App\Http\Controllers\API\UserController;
 use App\Mail\NotifMoodResult;
 use Illuminate\Support\Facades\Mail;
@@ -49,6 +52,10 @@ Route::get('questions/{questionId}/answers', [AnswerController::class, 'getByQue
 Route::post('/mood-result', [MoodResultController::class, 'store']);
 Route::get('/article', [ArticleController::class, 'index']);
 Route::get('/game', [GameController::class, 'index']);
+
+Route::post('password/email',  ForgotPasswordController::class);
+Route::post('password/code/check', CodeCheckController::class);
+Route::post('password/reset', ResetPasswordController::class);
 
 // Route::get('notif-mood-result', function () {
 //     $email = new NotifMoodResult();

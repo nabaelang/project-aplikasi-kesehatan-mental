@@ -34,6 +34,16 @@
             <label for="mood_status" class="form-label">Mood Status:</label>
             <input type="text" class="form-control" id="mood_status" name="mood_status" required>
         </div>
+        <div class="mb-3">
+            <label for="avatar_moods" class="form-label">Select Avatar Mood</label>
+            @foreach ($avatarMoods as $avatarMood)
+                <label>
+                    <input type="radio" name="avatar_moods" id="avatar_moods" value="{{ $avatarMood->image }}" required>
+                    <img src="{{ asset('storage/' . $avatarMood->image) }}" alt="{{ $avatarMood->image }}"
+                        style="max-width: 100px;">
+                </label>
+            @endforeach
+        </div>
 
         <button type col-sm-2="submit" class="btn btn-primary">Add Mood Status</button>
     </form>

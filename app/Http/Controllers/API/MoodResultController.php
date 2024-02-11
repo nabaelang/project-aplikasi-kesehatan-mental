@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Mail\NotifMoodResult;
+use App\Models\MoodRange;
 use App\Models\MoodResult;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -60,17 +61,35 @@ class MoodResultController extends Controller
             $averageMood = count($userMoodArray) > 0 ? round(array_sum($userMoodArray) / count($userMoodArray)) : null;
 
             $intAvg = (int) $averageMood;
+
+            // Mengambil mood configurations yang sesuai dengan range
+            $moodRanges = MoodRange::all();
+
+            // Inisialisasi mood_status
+            $moodStatus = 'Unknown';
+            $avatarMoods = 'Unknown';
+
+            // Menentukan mood_status berdasarkan range
+            foreach ($moodRanges as $moodRange) {
+                if ($intAvg >= $moodRange->min_range && $intAvg <= $moodRange->max_range) {
+                    $moodStatus = $moodRange->mood_status;
+                    $avatarMoods = $moodRange->avatar_moods;
+                    break;
+                }
+            }
             // dd($intAvg);
 
             $moodResult = new MoodResult([
                 'user_id' => $user->id,
-                'user_mood' => $userMoodJson,
-                'average_mood' => $averageMood,
+                'user_mood' => $moodStatus,
+                // 'average_mood' => $averageMood,
+                'mood_status' => $moodStatus,
+                'avatar_moods' => $avatarMoods,
             ]);
             $moodResult->save();
 
-            $email = new NotifMoodResult($moodResult);
-            Mail::to('reonaldi1105@gmail.com')->send($email);
+            // $email = new NotifMoodResult($moodResult);
+            // Mail::to('reonaldi1105@gmail.com')->send($email);
 
             return ResponseFormatter::success($moodResult, "Success");
         } else {

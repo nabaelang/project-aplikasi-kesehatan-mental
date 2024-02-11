@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('min_range')->nullable();
             $table->integer('max_range')->nullable();
             $table->string('mood_status')->nullable();
+            $table->string('avatar_moods')->nullable();
             $table->timestamps();
         });
     }

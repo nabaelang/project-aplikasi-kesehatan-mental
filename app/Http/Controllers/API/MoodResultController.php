@@ -67,13 +67,15 @@ class MoodResultController extends Controller
 
             // Inisialisasi mood_status
             $moodStatus = 'Unknown';
-            $avatarMoods = 'Unknown';
+            $femaleAvatar = 'Unknown';
+            $maleAvatar = 'Unknown';
 
             // Menentukan mood_status berdasarkan range
             foreach ($moodRanges as $moodRange) {
                 if ($intAvg >= $moodRange->min_range && $intAvg <= $moodRange->max_range) {
                     $moodStatus = $moodRange->mood_status;
-                    $avatarMoods = $moodRange->avatar_moods;
+                    $femaleAvatar = $moodRange->female_avatar;
+                    $maleAvatar = $moodRange->male_avatar;
                     break;
                 }
             }
@@ -84,7 +86,8 @@ class MoodResultController extends Controller
                 'user_mood' => $moodStatus,
                 // 'average_mood' => $averageMood,
                 'mood_status' => $moodStatus,
-                'avatar_moods' => $avatarMoods,
+                'female_avatar' => $femaleAvatar,
+                'male_avatar' => $maleAvatar,
             ]);
             $moodResult->save();
 

@@ -3,6 +3,10 @@
 @section('content')
     <div class="pagetitle">
         <h1>Dashboard</h1>
+        {{-- @forelse($admins as $admin)
+            <h3>{{ $admin->email }}</h3>
+        @empty
+        @endforelse --}}
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"><a href="/admin/dashboard">Dashboard</a></li>

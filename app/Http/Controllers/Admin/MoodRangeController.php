@@ -33,7 +33,8 @@ class MoodRangeController extends Controller
             'min_range' => 'required',
             'max_range' => 'required',
             'mood_status' => 'required',
-            'avatar_moods' => 'required',
+            'female_avatar' => 'required',
+            'male_avatar' => 'required',
 
         ]);
 
@@ -41,7 +42,8 @@ class MoodRangeController extends Controller
             'min_range' => $request->min_range,
             'max_range' => $request->max_range,
             'mood_status' => $request->mood_status,
-            'avatar_moods' => $request->avatar_moods,
+            'female_avatar' => $request->female_avatar,
+            'male_avatar' => $request->male_avatar,
         ]);
 
         return redirect()->route('admin.mood_range.index')->with('success', 'Article created successfully');
@@ -60,6 +62,8 @@ class MoodRangeController extends Controller
             'max_range' => $request->max_range,
             'mood_status' => $request->mood_status,
             'avatar_moods' => $request->avatar_moods,
+            'female_avatar' => $request->female_avatar,
+            'male_avatar' => $request->male_avatar,
         ]);
 
         return redirect()->route('admin.mood_range.index')->with('success', 'Mood Range updated successfully');

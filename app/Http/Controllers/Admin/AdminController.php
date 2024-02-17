@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,6 +12,8 @@ class AdminController extends Controller
     {
         // $userCount = User::count();
 
-        return view('admin.index');
+        $admins = Admin::all();
+
+        return view('admin.index', compact('admins'));
     }
 }

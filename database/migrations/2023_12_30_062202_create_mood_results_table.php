@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('mood_results', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->json('user_mood')->nullable();
+            // $table->json('user_mood')->nullable();
+            $table->String('user_mood')->nullable();
             $table->string('mood_status')->nullable();
-            $table->string('avatar_moods')->nullable();
+            $table->string('female_avatar')->nullable();
+            $table->string('male_avatar')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

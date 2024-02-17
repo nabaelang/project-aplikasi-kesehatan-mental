@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MoodRange extends Model
 {
     use HasFactory;
-    protected $fillable = ['min_range', 'max_range', 'mood_status', 'avatar_moods'];
+    protected $fillable = ['min_range', 'max_range', 'mood_status', 'female_avatar', 'male_avatar'];
 }

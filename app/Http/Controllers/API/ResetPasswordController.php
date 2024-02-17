@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Models\ResetCodePassword;
 use App\Models\User;
@@ -25,6 +26,8 @@ class ResetPasswordController extends Controller
         $passwordReset->delete();
 
         // return $this->jsonResponse(null, trans('site.password_has_been_successfully_reset'), 200);
-        return response(['message' => trans('site.password_has_been_successfully_reset')], 200);
+        // return response(['message' => trans('site.password_has_been_successfully_reset')], 200);
+
+        return ResponseFormatter::success("", trans('site.password_has_been_successfully_reset'));
     }
 }

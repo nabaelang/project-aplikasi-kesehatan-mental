@@ -19,7 +19,7 @@
                 <th>ID</th>
                 <th>Gender</th>
                 <th>Image</th>
-                <th>Actions</th>
+                {{-- <th>Actions</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
                     <td>
                         <img src="{{ asset('storage/' . $avatarMood->image) }}" alt="Avatar Image" style="max-width: 100px;">
                     </td>
-                    <td>
+                    {{-- <td>
                         <a href="/admin/avatar-moods/{{ $avatarMood->id }}" class="btn btn-warning me-2">Edit</a>
                         <form action="{{ route('admin.avatar-moods.destroy', $avatarMood->id) }}" method="POST"
                             style="display:inline">
@@ -40,7 +40,7 @@
                             <button type="submit" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete this avatar?')">Delete</button>
                         </form>
-                    </td>
+                    </td> --}}
                 </tr>
             @empty
                 <tr>

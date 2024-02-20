@@ -51,7 +51,8 @@ class MoodRangeController extends Controller
 
     public function edit(moodRange $moodRange)
     {
-        return view('admin.mood_range.edit', compact('moodRange'));
+        $avatarMoods = AvatarMood::all();
+        return view('admin.mood_range.edit', compact('moodRange'), compact('avatarMoods'));
     }
 
     public function update(Request $request, moodRange $moodRange)

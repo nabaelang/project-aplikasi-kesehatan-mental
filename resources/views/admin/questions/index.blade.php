@@ -24,6 +24,7 @@
                 <th>Answer</th>
                 <th>Survey Date</th>
                 <th>Default Question</th>
+                <th>Emoticon</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -42,6 +43,7 @@
                     @endforeach --}}
                     <td>{{ $question->survey_date }}</td>
                     <td>{{ $question->is_default }}</td>
+                    <td>{{ $question->is_emoticon }}</td>
                     <td>
                         <div class="d-flex align-items-center">
                             <a href="{{ route('admin.questions.edit', $question->id) }}" class="btn btn-warning me-2"><i

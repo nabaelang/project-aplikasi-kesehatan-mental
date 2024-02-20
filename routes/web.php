@@ -61,7 +61,14 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put('/admin/game/{id}', [GameController::class, 'update'])->name('admin.game.update');
     Route::delete('/admin/game/{id}', [GameController::class, 'destroy'])->name('admin.game.destroy');
 
-    Route::resource('/admin/mood-configurations', MoodConfigurationController::class);
+    // Route::resource('/admin/mood-configurations', MoodConfigurationController::class);
+    Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood-configurations.index');
+    Route::get('/admin/mood-configurations/create', [MoodConfigurationController::class, 'create'])->name('admin.mood-configurations.create');
+    Route::post('/admin/mood-configurations', [MoodConfigurationController::class, 'store'])->name('admin.mood-configurations.store');
+    Route::get('/admin/mood-configurations/{moodConfiguration}/edit', [MoodConfigurationController::class, 'edit'])->name('admin.mood-configurations.edit');
+    Route::put('/admin/mood-configurations/{moodConfiguration}', [MoodConfigurationController::class, 'update'])->name('admin.mood-configurations.update');
+    Route::delete('/admin/mood-configurations/{moodConfiguration}', [MoodConfigurationController::class, 'destroy'])->name('admin.mood-configurations.destroy');
+
     Route::resource('/admin/avatar-moods', AvatarMoodController::class);
     Route::delete('/admin/avatar-moods/{avatar-moods}', [AvatarMoodController::class, 'destroy'])->name('admin.avatar-moods.destroy');
 });

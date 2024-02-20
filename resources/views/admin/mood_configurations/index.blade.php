@@ -19,7 +19,7 @@
                 <th>Selected Option</th>
                 <th>Mood</th>
                 <th>Percentage</th>
-                {{-- <th>Action</th> --}}
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -31,15 +31,16 @@
                     <td>{{ $config->percentage }}</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            {{-- <a href="/admin/mood-configurations/edit{{ $config }}" class="btn btn-warning me-2"><i
-                                    class="text-white bi bi-pencil-fill"></i></a> --}}
+                            <a href="{{ route('admin.mood-configurations.edit', $config->id) }}"
+                                class="btn btn-warning me-2"><i class="text-white bi bi-pencil-fill"></i></a>
 
-                            {{-- <form action="/admin/mood-configurations/destroy{{ $config }}" method="POST" class="">
+                            <form action="{{ route('admin.mood-configurations.destroy', $config->id) }}" method="POST"
+                                class="">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i
                                         class="text-white bi bi-trash3-fill"></i></button>
-                            </form> --}}
+                            </form>
                         </div>
                     </td>
                 </tr>

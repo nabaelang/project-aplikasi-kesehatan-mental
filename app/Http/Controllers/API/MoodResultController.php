@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Mail\NotifMoodResult;
+use App\Models\Mood;
 use App\Models\MoodRange;
 use App\Models\MoodResult;
 use Illuminate\Http\Request;
@@ -56,21 +57,20 @@ class MoodResultController extends Controller
         $userMoodArray = json_decode($userMoodJson, true);
 
         if (is_array($userMoodArray)) {
-            // $averageMood = count($userMoodArray) > 0 ? array_sum($userMoodArray) / count($userMoodArray) : null;
-
             $averageMood = count($userMoodArray) > 0 ? round(array_sum($userMoodArray) / count($userMoodArray)) : null;
-
             $intAvg = (int) $averageMood;
+
+            // dd($intAvg);
 
             // Mengambil mood configurations yang sesuai dengan range
             $moodRanges = MoodRange::all();
 
-            // Inisialisasi mood_status
+            // Inisialisasi mood_status, female_avatar, dan male_avatar
             $moodStatus = 'Unknown';
             $femaleAvatar = 'Unknown';
             $maleAvatar = 'Unknown';
 
-            // Menentukan mood_status berdasarkan range
+            // Menentukan mood_status, female_avatar, dan male_avatar berdasarkan range
             foreach ($moodRanges as $moodRange) {
                 if ($intAvg >= $moodRange->min_range && $intAvg <= $moodRange->max_range) {
                     $moodStatus = $moodRange->mood_status;
@@ -79,26 +79,30 @@ class MoodResultController extends Controller
                     break;
                 }
             }
-            // dd($intAvg);
 
             $moodResult = new MoodResult([
                 'user_id' => $user->id,
                 'user_mood' => $moodStatus,
-                // 'average_mood' => $averageMood,
                 'mood_status' => $moodStatus,
                 'female_avatar' => $femaleAvatar,
                 'male_avatar' => $maleAvatar,
             ]);
             $moodResult->save();
 
-            // $email = new NotifMoodResult($moodResult);
-            // Mail::to('reonaldi1105@gmail.com')->send($email);
+            $mood = new Mood([
+                'user_id' => $moodResult->user_id,
+                'mood' => $moodResult->mood_status,
+                'avatar_moods' => $user->gender === 'female' ? $femaleAvatar : $maleAvatar,
+                'survey_date' => now(), // Anda dapat menyesuaikan ini sesuai kebutuhan
+            ]);
+            $mood->save();
 
             return ResponseFormatter::success($moodResult, "Success");
         } else {
             return ResponseFormatter::error(null, 'Invalid user_mood format', 422);
         }
     }
+
 
 
 

@@ -40,18 +40,26 @@ class MoodConfigurationController extends Controller
 
     public function edit(MoodConfiguration $moodConfiguration)
     {
+        // $moodConfig = MoodConfiguration::find($moodConfiguration);
         $questions = Question::all();
+        $answerOptions = $this->getAnswerOptions($moodConfiguration->question_id); // Anda perlu membuat metode ini
 
-        return view('admin.mood_configurations.edit', compact('moodConfiguration', 'questions'));
+        return view('admin.mood_configurations.edit', compact('moodConfiguration', 'questions', 'answerOptions'));
+    }
+
+    protected function getAnswerOptions($questionId)
+    {
+        $question = Question::find($questionId);
+        return $question ? $question->answer_options : [];
     }
 
     public function update(Request $request, MoodConfiguration $moodConfiguration)
     {
-        $request->validate([
-            'question_id' => 'required|exists:questions,id',
-            'selected_option' => 'required',
-            'mood' => 'required',
-        ]);
+        // $request->validate([
+        //     'question_id' => 'required|exists:questions,id',
+        //     'selected_option' => 'required',
+        //     'mood' => 'required',
+        // ]);
 
         $moodConfiguration->update($request->all());
 

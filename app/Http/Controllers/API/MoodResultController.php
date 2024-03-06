@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Mail\NotifMoodResult;
+use App\Mail\NotifUserMoods;
 use App\Models\Mood;
 use App\Models\MoodRange;
 use App\Models\MoodResult;
@@ -96,6 +97,13 @@ class MoodResultController extends Controller
                 'survey_date' => now(), // Anda dapat menyesuaikan ini sesuai kebutuhan
             ]);
             $mood->save();
+
+            // Mengambil alamat email user terkait
+            $userEmail = $mood->user->email;
+
+            $email = new NotifUserMoods($mood);
+            // Mail::to('reonaldi1105@gmail.com')->send($email);
+            Mail::to($userEmail)->send($email);
 
             return ResponseFormatter::success($moodResult, "Success");
         } else {

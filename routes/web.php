@@ -33,37 +33,32 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('adminindex');
-    Route::get('/admin/questions', [QuestionController::class, 'index'])->name('admin.questions.index');
-    Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
+
     Route::post('/admin/questions', [QuestionController::class, 'store'])->name('admin.questions.store');
     Route::get('/admin/questions/{question}/edit', [QuestionController::class, 'edit'])->name('admin.questions.edit');
     Route::put('/admin/questions/{question}', [QuestionController::class, 'update'])->name('admin.questions.update');
     Route::delete('/admin/questions/{question}', [QuestionController::class, 'destroy'])->name('admin.questions.destroy');
 
-    Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article.index');
-    Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
+
     Route::post('/admin/article', [ArticleController::class, 'store'])->name('admin.article.store');
     Route::get('/admin/article/{article}/edit', [ArticleController::class, 'edit'])->name('admin.article.edit');
     Route::put('/admin/article/{article}', [ArticleController::class, 'update'])->name('admin.article.update');
     Route::delete('/admin/article/{article}', [ArticleController::class, 'destroy'])->name('admin.article.destroy');
 
-    Route::get('/admin/mood-range', [MoodRangeController::class, 'index'])->name('admin.mood_range.index');
-    Route::get('/admin/mood-range/create', [MoodRangeController::class, 'create'])->name('admin.mood_range.create');
+
     Route::post('/admin/mood-range', [MoodRangeController::class, 'store'])->name('admin.mood_range.store');
     Route::get('/admin/mood-range/{moodRange}/edit', [MoodRangeController::class, 'edit'])->name('admin.mood_range.edit');
     Route::put('/admin/mood-range/{moodRange}', [MoodRangeController::class, 'update'])->name('admin.mood_range.update');
     Route::delete('/admin/mood-range/{moodRange}', [MoodRangeController::class, 'destroy'])->name('admin.mood_range.destroy');
 
-    Route::get('/admin/game', [GameController::class, 'index'])->name('admin.game.index');
-    Route::get('/admin/game/create', [GameController::class, 'create'])->name('admin.game.create');
+
     Route::post('/admin/game', [GameController::class, 'store'])->name('admin.game.store');
     Route::get('/admin/game/{id}/edit', [GameController::class, 'edit'])->name('admin.game.edit');
     Route::put('/admin/game/{id}', [GameController::class, 'update'])->name('admin.game.update');
     Route::delete('/admin/game/{id}', [GameController::class, 'destroy'])->name('admin.game.destroy');
 
     // Route::resource('/admin/mood-configurations', MoodConfigurationController::class);
-    Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood-configurations.index');
-    Route::get('/admin/mood-configurations/create', [MoodConfigurationController::class, 'create'])->name('admin.mood-configurations.create');
+
     Route::post('/admin/mood-configurations', [MoodConfigurationController::class, 'store'])->name('admin.mood-configurations.store');
     Route::get('/admin/mood-configurations/{moodConfiguration}/edit', [MoodConfigurationController::class, 'edit'])->name('admin.mood-configurations.edit');
     Route::put('/admin/mood-configurations/{moodConfiguration}', [MoodConfigurationController::class, 'update'])->name('admin.mood-configurations.update');
@@ -73,7 +68,23 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::delete('/admin/avatar-moods/{avatar-moods}', [AvatarMoodController::class, 'destroy'])->name('admin.avatar-moods.destroy');
 });
 
+// Question for feature test
+Route::get('/admin/questions', [QuestionController::class, 'index'])->name('admin.questions.index');
+Route::get('/admin/questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
 
+// Article  for feature test
+Route::get('/admin/article', [ArticleController::class, 'index'])->name('admin.article.index');
+Route::get('/admin/article/create', [ArticleController::class, 'create'])->name('admin.article.create');
+
+
+Route::get('/admin/mood-range', [MoodRangeController::class, 'index'])->name('admin.mood_range.index');
+Route::get('/admin/mood-range/create', [MoodRangeController::class, 'create'])->name('admin.mood_range.create');
+
+Route::get('/admin/mood-configurations', [MoodConfigurationController::class, 'index'])->name('admin.mood-configurations.index');
+Route::get('/admin/mood-configurations/create', [MoodConfigurationController::class, 'create'])->name('admin.mood_configurations.create');
+
+Route::get('/admin/game', [GameController::class, 'index'])->name('admin.game.index');
+Route::get('/admin/game/create', [GameController::class, 'create'])->name('admin.game.create');
 
 
 Route::get('/admin/users-profile', function () {
